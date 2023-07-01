@@ -43,6 +43,6 @@ jobs:
       # Runs a command for particular environment
       - name: Reads environment level variable
         run: |
-          # echo ${{ vars.ENV_NAME }}
-          echo $ENV_NAME
+          echo ${{ vars.ENV_NAME }}
+          # echo $ENV_NAME
  
