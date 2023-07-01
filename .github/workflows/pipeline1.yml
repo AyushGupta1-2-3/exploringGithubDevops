@@ -43,5 +43,5 @@ jobs:
       # Runs a command for particular environment
       - name: Reads environment level variable
         run: |
-          echo $env_name
+          echo ${{ vars.ENV_NAME }}
  
