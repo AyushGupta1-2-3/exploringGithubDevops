@@ -77,3 +77,8 @@ jobs:
       - name: Reads environment level variable
         run: |
           echo $var.env_name
+
+          echo ${{ vars.ENV_NAME }}
+          # echo $ENV_NAME
+ 
+
