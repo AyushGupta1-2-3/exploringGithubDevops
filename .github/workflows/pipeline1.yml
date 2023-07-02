@@ -18,7 +18,7 @@ jobs:
   # This workflow contains a single job called "build"
   development_deploy:
     # Add condition for Development stage
-    if: ${{ github.ref }} == 'refs/heads/dev'
+    if: github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
     environment: dev
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -45,10 +45,15 @@ jobs:
       - name: Reads environment level variable
         run: |
           echo $var.env_name
+          
+      # Prints name of branch 
+      - name: Prints name of branch
+        run: |
+          echo "${{ github.ref }}"
   
   qa_deploy: 
     # Add condition for Development stage
-    if: ${{ github.ref }} == 'refs/heads/qa'
+    if: github.ref == 'refs/heads/qa'
     runs-on: ubuntu-latest
     environment: dev
     # Steps represent a sequence of tasks that will be executed as part of the job
