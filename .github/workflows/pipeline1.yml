@@ -5,8 +5,9 @@ name: Pipeline1
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "dev"]
+  # workflow_dispatch
+  # push:
+    # branches: [ "dev","qa"]
   # pull_request:
     # branches: [ "main" ]
 
@@ -16,8 +17,9 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  development_deploy:
+    # Add condition for Development stage
+    if: github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
     environment: dev
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -43,6 +45,44 @@ jobs:
       # Runs a command for particular environment
       - name: Reads environment level variable
         run: |
+          echo $var.env_name
+          
+      # Prints name of branch 
+      - name: Prints name of branch
+        run: |
+          echo "${{ github.ref }}"
+  
+  qa_deploy: 
+    # Add condition for Development stage
+    if: github.ref == 'refs/heads/qa'
+    runs-on: ubuntu-latest
+    environment: dev
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs print file content
+      - name: Run a one-line script
+        run: cat branch_file
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+          
+          
+      # Runs a command for particular environment
+      - name: Reads environment level variable
+        run: |
+          echo $var.env_name
+
           echo ${{ vars.ENV_NAME }}
           # echo $ENV_NAME
  
+
