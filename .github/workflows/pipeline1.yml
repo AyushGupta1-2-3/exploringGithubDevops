@@ -18,8 +18,7 @@ jobs:
   # This workflow contains a single job called "build"
   development_deploy:
     # Add condition for Development stage
-    if: $GITHUB_REF == 'dev'
-    # The type of runner that the job will run on
+    if: ${{ github.ref }} == 'refs/heads/dev'
     runs-on: ubuntu-latest
     environment: dev
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -49,8 +48,7 @@ jobs:
   
   qa_deploy: 
     # Add condition for Development stage
-    if: $GITHUB_REF == 'qa'
-    # The type of runner that the job will run on
+    if: ${{ github.ref }} == 'refs/heads/qa'
     runs-on: ubuntu-latest
     environment: dev
     # Steps represent a sequence of tasks that will be executed as part of the job
