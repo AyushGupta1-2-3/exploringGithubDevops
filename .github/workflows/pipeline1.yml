@@ -56,7 +56,7 @@ jobs:
     # Add condition for Development stage
     if: github.ref == 'refs/heads/qa'
     runs-on: ubuntu-latest
-    environment: dev
+    environment: qa
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
